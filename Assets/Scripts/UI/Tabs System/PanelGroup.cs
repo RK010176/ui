@@ -8,32 +8,31 @@ public class PanelGroup : MonoBehaviour
     public TabGroup TabGroup;
     public int PanelIndex;
 
-    private void Awake()
+
+    private void Start()
     {
-        ShowCurrentPanel();
+        
     }
+
+
+    private void Awake()
+    {ShowCurrentPanel();}
 
     private void ShowCurrentPanel()
     {
         for (int i = 0; i < Panels.Length; i++)
         {
-            if (i == PanelIndex)
-            {
-                Panels[i].gameObject.SetActive(true);
-            }
-            else
-            {
-                Panels[i].gameObject.SetActive(false);
-
-            }
-        }
-    
+            if (i == PanelIndex)            
+                Panels[i].gameObject.SetActive(true);            
+            else            
+                Panels[i].gameObject.SetActive(false);            
+        }    
     }
 
-    public void SetPageIndex(int index)
-    {
-        PanelIndex = index;
-        ShowCurrentPanel();
-    }
+    //public void SetPageIndex(int index)
+    //{
+    //    PanelIndex = index;
+    //    ShowCurrentPanel();
+    //}
 
 }

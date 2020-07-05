@@ -1,17 +1,17 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TabGroup : MonoBehaviour
 {
-    public List<TabButton> tabButtons;
+    public List<TabButton> tabButtons; //Header buttons    
+    public List<GameObject> ObjectsToSwap; //Body contents
     public Sprite tabIdle;
     public Sprite tabHover;
     public Sprite tabActive;
     public TabButton SelectedTab;
-    public List<GameObject> ObjectsTpSwap;
-
 
     public void Subscribe(TabButton button)
     {
@@ -30,23 +30,26 @@ public class TabGroup : MonoBehaviour
     {
         ResetTabs();        
     }
-    public void OnTabSelected(TabButton button)
+    public void OnTabSelected(TabButton button) // display button's content
     {
         SelectedTab = button;
         ResetTabs();
         button.Background.sprite = tabActive;
         int index = button.transform.GetSiblingIndex();
-        for (int i = 0; i < ObjectsTpSwap.Count; i++)
+        for (int i = 0; i < ObjectsToSwap.Count; i++)
         {
             if (i == index)
             {
-                ObjectsTpSwap[i].SetActive(true);
+                ObjectsToSwap[i].SetActive(true);
+                
             }
             else
-            {
-                ObjectsTpSwap[i].SetActive(false);
-            }
+                ObjectsToSwap[i].SetActive(false);            
         }
+
+        DOTween.Sequence()
+                .Append(SelectedTab.transform.DOScale(1.1f, 0.5f).SetLoops(2, LoopType.Yoyo)
+                .SetEase(Ease.Linear));
     }
 
     public void ResetTabs()

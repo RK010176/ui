@@ -20,8 +20,8 @@ public class SelectionController : MonoBehaviour
 
     private void Start()
     {
-        print(ContentRect.offsetMin.x - ContentRect.offsetMax.x);
-        print((ContentRect.offsetMin.x - ContentRect.offsetMax.x) / ContentRect.transform.childCount);
+        //print(ContentRect.offsetMin.x - ContentRect.offsetMax.x);
+        //print((ContentRect.offsetMin.x - ContentRect.offsetMax.x) / ContentRect.transform.childCount);
 
         _contentWidth = ContentRect.offsetMin.x - ContentRect.offsetMax.x;
         _ItemCenter = Mathf.Abs((ContentRect.offsetMin.x - ContentRect.offsetMax.x) / (ContentRect.transform.childCount-1));
